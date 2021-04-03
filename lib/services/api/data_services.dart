@@ -3,29 +3,25 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class DataApi {
-  String baseUrl = "https://rmeembackend.conveyor.cloud/api/v1/app/";
+  String baseUrl = "https://wcif-backend.herokuapp.com/api/";
 
   // Login API
   Future<dynamic> loginAPI(String email, String password) async {
-    if (email == 'a' && password == '123')
-      return json.decode(
-          '{"token":"libya token","id":1,"phone":"0926503011","name":"عبدالسميع محمود"}');
-    var body = jsonEncode({'username': email, 'password': password});
-    var headers = {
-      "Accept": "application/json",
-      "content-type": "application/json"
-    };
     try {
-      var data = await http.post(Uri.https(baseUrl, 'auth/login'),
-          body: body, headers: headers);
-      var jsonData = json.decode(data.body);
+      var response = await http.post(Uri.parse(baseUrl + 'auth/login'),
+          body: {'Email': email, 'Password': password});
 
-      if (data.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+
+      if (jsonData['message'] == "login successfull.") {
+        print("welcome User");
         return jsonData;
       } else {
+        print("wrong login");
         return null;
       }
     } on Exception catch (_) {
+      print("error");
       return null;
     }
   }

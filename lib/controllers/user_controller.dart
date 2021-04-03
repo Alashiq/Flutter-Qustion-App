@@ -14,11 +14,13 @@ class UserController extends ChangeNotifier {
   final passwordIn = TextEditingController();
   Future<void> login() async {
     print(emailIn.text);
+    print(passwordIn.text);
     dynamic _resData =
         await DataApi().loginAPI(emailIn.text, passwordIn.text);
     if (_resData != null) {
       user = UserModel.fromJson(_resData);
       Get.offNamed('/home');
+      print(user.token);
     }
     notifyListeners();
   }

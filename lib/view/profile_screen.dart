@@ -38,59 +38,109 @@ class ProfileScreen extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
               margin: EdgeInsets.fromLTRB(10, 20, 10, 10),
               child: Container(
-                height: 200,
+                height: 260,
                 alignment: Alignment.center,
                 color: Colors.white,
-                child:SingleChildScrollView(
-                  child:  Column(
-                  children: [
-// Name
-                    Container(
-                      height: 60,
-                      color: Colors.white,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "الإسم",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          SizedBox(width: 50),
-                          Text(
-                            "عبدالسميع محمود",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+// First Name
+                      Container(
+                        height: 60,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "الإسم",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            SizedBox(width: 50),
+                            Text(
+                              user.user.firstName,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+                      // Last Name
+                      Container(
+                        height: 1,
+                        width: double.infinity,
+                        color: Color(0xffeeeeeee),
+                      ),
+                      Container(
+                        height: 60,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "اللقب",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            SizedBox(width: 50),
+                            Text(
+                              user.user.lastName,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ],
+                        ),
+                      ),
 // Phone
 
-                    Container(
-                      height: 1,
-                      width: double.infinity,
-                      color: Color(0xffeeeeeee),
-                    ),
-
-                    Container(
-                      height: 60,
-                      color: Colors.white,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "الهاتف",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          SizedBox(width: 50),
-                          Text(
-                            "0911111111",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ],
+                      Container(
+                        height: 1,
+                        width: double.infinity,
+                        color: Color(0xffeeeeeee),
                       ),
-                    )
-                  ],
-                ),
+
+                      Container(
+                        height: 60,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "الهاتف",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            SizedBox(width: 50),
+                            Text(
+                              user.user.phone,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // Last Name
+
+                      Container(
+                        height: 1,
+                        width: double.infinity,
+                        color: Color(0xffeeeeeee),
+                      ),
+                      Container(
+                        height: 60,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "إسم الدخول",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            SizedBox(width: 50),
+                            Text(
+                              user.user.loginName,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
