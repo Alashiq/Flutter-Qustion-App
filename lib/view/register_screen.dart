@@ -31,101 +31,176 @@ class RegisterScreen extends StatelessWidget {
         ),
       ),
       body: LoadingBox(
-        child: Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Email Input
-                TextField(
-                  controller: user.emailRg,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'البريد الإلكتروني',
-                    contentPadding: const EdgeInsets.only(
-                        left: 14.0, right: 14.0, bottom: 8.0, top: 8.0),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(25.7),
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(25.7),
-                    ),
-                  ),
-                ),
-
-                SizedBox(
-                  height: 20,
-                ),
-
-                                // Email Input
-                TextField(
-                  controller: user.phoneRg,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'رقم الهاتف',
-                    contentPadding: const EdgeInsets.only(
-                        left: 14.0, right: 14.0, bottom: 8.0, top: 8.0),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(25.7),
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(25.7),
+        child: SingleChildScrollView(
+          child:Expanded(child:  Container(
+              padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // FirstName Input
+                  TextField(
+                    controller: user.firstNameRg,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'الإسم',
+                      contentPadding: const EdgeInsets.only(
+                          left: 14.0, right: 14.0, bottom: 8.0, top: 8.0),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
                     ),
                   ),
-                ),
 
-                SizedBox(
-                  height: 20,
-                ),
-
-                // Password Input
-                TextField(
-                  controller: user.passwordRg,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'كلمة المرور',
-                    contentPadding: const EdgeInsets.only(
-                        left: 14.0, right: 14.0, bottom: 8.0, top: 8.0),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(25.7),
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(25.7),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  // Last Name Input
+                  TextField(
+                    controller: user.lastNameRg,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'اللقب',
+                      contentPadding: const EdgeInsets.only(
+                          left: 14.0, right: 14.0, bottom: 8.0, top: 8.0),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
                     ),
                   ),
-                ),
 
-                SizedBox(
-                  height: 25,
-                ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  // Login Name Input
+                  TextField(
+                    controller: user.loginNameRg,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'إسم الدخول',
+                      contentPadding: const EdgeInsets.only(
+                          left: 14.0, right: 14.0, bottom: 8.0, top: 8.0),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
+                    ),
+                  ),
 
-                // Button Login
-                Container(
-                  height: 56,
-                  width: 240,
-                  child: RaisedButton(
-                    color: Colors.red,
-                    textColor: Colors.white,
-                  child: Text("تسجيل",style:TextStyle(fontSize: 20),),
-                  onPressed: () async {
-                    loading.start();
-                    await user.register();
-                    loading.stop();
-                  },
-                ),
-                )
-              ],
-            )),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  // Email Input
+                  TextField(
+                    controller: user.emailRg,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'البريد الإلكتروني',
+                      contentPadding: const EdgeInsets.only(
+                          left: 14.0, right: 14.0, bottom: 8.0, top: 8.0),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+
+                  // Email Input
+                  TextField(
+                    controller: user.phoneRg,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'رقم الهاتف',
+                      contentPadding: const EdgeInsets.only(
+                          left: 14.0, right: 14.0, bottom: 8.0, top: 8.0),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+
+                  // Password Input
+                  TextField(
+                    controller: user.passwordRg,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'كلمة المرور',
+                      contentPadding: const EdgeInsets.only(
+                          left: 14.0, right: 14.0, bottom: 8.0, top: 8.0),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(25.7),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 25,
+                  ),
+
+                  // Button Login
+                  Container(
+                    height: 56,
+                    width: 240,
+                    child: RaisedButton(
+                      color: Colors.red,
+                      textColor: Colors.white,
+                      child: Text(
+                        "تسجيل",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () async {
+                        loading.start();
+                        await user.register();
+                        loading.stop();
+                      },
+                    ),
+                  )
+                ],
+              ),
+              ),
+          ),
+        ),
       ),
     );
   }

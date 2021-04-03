@@ -26,30 +26,29 @@ class DataApi {
     }
   }
 
-  // Login API
-  Future<dynamic> registerAPI(
-      String email, String phone, String password) async {
-    if (email == 'a' && password == '123')
-      return json.decode(
-          '{"token":"libya token","id":1,"phone":"0926503011","name":"عبدالسميع محمود"}');
-    var body =
-        jsonEncode({'username': email, 'phone': phone, 'password': password});
-    var headers = {
-      "Accept": "application/json",
-      "content-type": "application/json"
-    };
+ 
+   // Register API
+  Future<dynamic> registerAPI(String firstName, String lastName, String loginName, String email, String password,String phone) async {
     try {
-      var data = await http.post(Uri.https(baseUrl, 'auth/register'),
-          body: body, headers: headers);
-      var jsonData = json.decode(data.body);
+      var response = await http.post(Uri.parse(baseUrl + 'auth/registration'),
+          body: {
+            'FirstName': firstName,
+            'LastName': lastName,
+            'LoginName': loginName,
+            'Email': email,
+            'Password': password,
+            'Phone': phone,
+            });
 
-      if (data.statusCode == 200) {
-        return jsonData;
-      } else {
-        return null;
-      }
+      var jsonData = json.decode(response.body);
+
+        print("Success Registerd");
+        return true;
     } on Exception catch (_) {
+      print("error Register");
       return null;
     }
   }
+
+//  End Data API
 }

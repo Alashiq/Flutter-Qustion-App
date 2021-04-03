@@ -15,8 +15,7 @@ class UserController extends ChangeNotifier {
   Future<void> login() async {
     print(emailIn.text);
     print(passwordIn.text);
-    dynamic _resData =
-        await DataApi().loginAPI(emailIn.text, passwordIn.text);
+    dynamic _resData = await DataApi().loginAPI(emailIn.text, passwordIn.text);
     if (_resData != null) {
       user = UserModel.fromJson(_resData);
       Get.offNamed('/home');
@@ -25,27 +24,28 @@ class UserController extends ChangeNotifier {
     notifyListeners();
   }
 
-
-
-
-
-    //
+  //
   //
   //
   //=========================> Register Function
+  final firstNameRg = TextEditingController();
+  final lastNameRg = TextEditingController();
+  final loginNameRg = TextEditingController();
   final emailRg = TextEditingController();
   final phoneRg = TextEditingController();
   final passwordRg = TextEditingController();
   Future<void> register() async {
     print(emailIn.text);
-    dynamic _resData =
-        await DataApi().registerAPI(emailRg.text,phoneRg.text, passwordRg.text);
+    dynamic _resData = await DataApi().registerAPI(
+        firstNameRg.text,
+        lastNameRg.text,
+        loginNameRg.text,
+        emailRg.text,
+        passwordRg.text,
+        phoneRg.text);
     if (_resData != null) {
-      user = UserModel.fromJson(_resData);
-      Get.offNamed('/home');
+      Get.offNamed('/');
     }
     notifyListeners();
   }
-
-
 }
