@@ -32,6 +32,8 @@ dependencies:
   http:
   get:
   google_fonts:
+  bot_toast:
+
 
 dev_dependencies:
   flutter_test:

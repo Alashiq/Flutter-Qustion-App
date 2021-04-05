@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qustionsapp/controllers/user_controller.dart';
@@ -29,11 +30,12 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: GetMaterialApp(
+        builder: BotToastInit(), 
 
         debugShowCheckedModeBanner: false,
         title: 'Qustions App',
         initialRoute: '/',
-        
+
         routes: {
           '/': (context) => WelcomeScreen(),
           '/login': (context) => LoginScreen(),
@@ -43,11 +45,11 @@ class MyApp extends StatelessWidget {
           '/add': (context) => AddQustionScreen(),
           '/profile': (context) => ProfileScreen(),
         },
-             theme:ThemeData(
-       textTheme: GoogleFonts.tajawalTextTheme(
-           Theme.of(context).textTheme,
-      ),
-             ),
+        theme: ThemeData(
+          textTheme: GoogleFonts.tajawalTextTheme(
+            Theme.of(context).textTheme,
+          ),
+        ),
       ),
     );
   }

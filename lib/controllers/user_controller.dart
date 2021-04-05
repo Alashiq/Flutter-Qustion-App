@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:qustionsapp/models/qustions_model.dart';
 import 'package:qustionsapp/models/user_model.dart';
 import 'package:qustionsapp/services/api/data_services.dart';
 
 class UserController extends ChangeNotifier {
-  UserModel userCatch;
   UserModel user;
   //
   //
@@ -47,5 +47,23 @@ class UserController extends ChangeNotifier {
       Get.offNamed('/');
     }
     notifyListeners();
+  }
+
+  //
+  //
+  //=========================> Register Function
+  int homeState = 0; //0=> Not Load   -    1=> Loded    -   2=> SomeTing Wrong
+  List<QustionsModel> qustionsList;
+  Future<void> loadQustions() async {
+    await Future.delayed(const Duration(seconds: 2));
+    dynamic _resData = await DataApi().getQustionsAPI(user.token);
+    if (_resData != null) {
+      qustionsList = _resData.map<QustionsModel>((data) => QustionsModel.fromJson(data)).toList();
+      homeState = 1;
+      notifyListeners();
+    } else {
+      homeState = 2;
+      notifyListeners();
+    }
   }
 }

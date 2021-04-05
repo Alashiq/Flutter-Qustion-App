@@ -1,9 +1,11 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:qustionsapp/controllers/user_controller.dart';
 import 'package:qustionsapp/public_models/loading.dart';
+import 'package:qustionsapp/widgets/shared/auto_load.dart';
 import 'package:qustionsapp/widgets/shared/bottom_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,7 +14,13 @@ class HomeScreen extends StatelessWidget {
     var loading = Provider.of<LoadingModel>(context, listen: true);
     var user = Provider.of<UserController>(context, listen: true);
 
-    return Directionality(
+    return AutoLoad(
+      onInit: () async {
+        BotToast.showLoading();
+        await user.loadQustions();
+        BotToast.closeAllLoading();
+      },
+      child: Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
           backgroundColor: Color(0xffeeeeee),
@@ -35,25 +43,37 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
           body: LoadingBox(
-            child: Container(
-              padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
-              child: SingleChildScrollView(
-                child: Column(
-                children: [
-                  QustionItem(
-                    qustion: "السؤال الاول",
-                  ),
-                  QustionItem(
-                    qustion: "تجربة السؤال الثاني",
-                  ),
-                ],
-              ),),
+            child: SingleChildScrollView(
+              child:Container(
+                              padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+
+                child: user.homeState == 0
+                  ? Container()
+                  : user.homeState == 1
+                      ? ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: user.qustionsList.length,
+                          itemBuilder: (context, index) {
+                            return QustionItem(
+                              qustion: user.qustionsList[index].questionTitle,
+                            );
+                          },
+                        )
+                      : user.homeState == 2
+                          ? Container(
+                              child: Text("حدث خطأ ما"),
+                            )
+                          : Container(),
+            ),
             ),
           ),
           bottomNavigationBar: BottomBar(
             active: 1,
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
@@ -130,8 +150,11 @@ class QustionItem extends StatelessWidget {
             child: RaisedButton(
               color: Colors.blueAccent,
               textColor: Colors.white,
-              child: Text("شاهد السؤال",style: GoogleFonts.cairo(fontSize: 16),),
-              onPressed: (){
+              child: Text(
+                "شاهد السؤال",
+                style: GoogleFonts.cairo(fontSize: 16),
+              ),
+              onPressed: () {
                 print("enter qustion");
               },
             ),
